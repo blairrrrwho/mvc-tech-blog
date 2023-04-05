@@ -1,3 +1,12 @@
+node_modules
+.vscode
+.DS_Store
+.DS_Store/
+.history
+package-lock.json
+notes.md
+.env
+
 # Logs
 logs
 *.log
