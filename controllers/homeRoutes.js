@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
+// Homepage
 router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
@@ -31,6 +32,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Single post view
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -77,6 +79,7 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+// Login
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -86,5 +89,15 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+// Sign up
+// router.get("/signup", async (req, res) => {
+//   try {
+//     res.render("signup", {});
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
