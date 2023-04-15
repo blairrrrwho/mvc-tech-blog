@@ -1,18 +1,26 @@
-{{!-- was on the profile.hdb for project 2; lists the user posts on profile page --}}
-{{#if posts.length}}
-<div class="col-md-6 post-list">
-    <h3>Current Post:</h3>
 
-    {{#each posts as |post|}}
-    <div class="row mb-2">
-        <div class="col-md-8">
-            <h4><a href="/post/{{post.id}}">{{post.name}}</a></h4>
+<div class="card mb-6">
+  <header class="card-header card-header-title has-background-grey-lighter">
+    
+        <div class="column">
+            <p class=" has-text-primary-light"></p>
+      <a href="/post/{{id}}"  class="has-text-black is-capitalized is-pulled-left">{{title}} </a></p>
+      </div>
+
+      <div class="column">
+      <span class=""> </span>
+      </div>
+    
+  </header>
+
+    <div class="card-content">
+        <div class="content has-text-justified">
+            {{post_content}}
         </div>
-        <div class="col-md-4">
-            <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-        </div>
+            <div class="is-pulled-right">
+                <b>{{user.username}}</b> | 
+                <a href="https://github.com/{{user.github}}"><i class="fab fa-github"></i></a>
+                 | {{format_date created_at}} | <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+            </div>
+        
     </div>
-    {{/each}}
-</div>
-{{/if}}
-</div>
