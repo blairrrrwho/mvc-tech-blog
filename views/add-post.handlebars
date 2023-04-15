@@ -1,0 +1,69 @@
+<a href='/dashboard' class='go-back'> &larr; Back to dashboard</a>
+
+<article class='new-page'>
+    <section class='new-form-page'>
+        <div class='form-heading'>
+            <h2>Create New Blog Post</h2>
+        </div>
+        <div class='form-section'>
+            <form class='new-post-form'>
+                <div class='post-title-section'>
+                    <label for='post-title'>Title</label>
+                    <input type='text' id='post-title' name='post-title' />
+                </div>
+                <div class='post-content'>
+                    <label for='post-content'>Content</label>
+                    <textarea class='entry-field' id='post-content' name='post-content'></textarea>
+                </div>
+                <button type='submit' class='btn'>Create</button>
+            </form>
+        </div>
+    </section>
+</article>
+
+<script src='/js/add-post.js'></script>
+
+<div class='row'>
+    <div class='col-auto'>
+        <h2>Welcome, {{name}}!</h2>
+    </div>
+</div>
+
+<div class='row mt-4'>
+    <div class='col-md-6'>
+        <h3>Create a New Post:</h3>
+
+        <form class='form new-post-form'>
+            <div class='form-group'>
+                <label for='post-name'>post name:</label>
+                <input class='form-input' type='text' id='post-name' name='post-name' />
+            </div>
+            <div class='form-group'>
+                <label for='post-desc'>description:</label>
+                <textarea class='form-input' id='post-desc' name='post-desc'></textarea>
+            </div>
+            <div class='form-group'>
+                <button type='submit' class='btn btn-primary'>Create</button>
+            </div>
+        </form>
+    </div>
+
+    {{#if posts.length}}
+    <div class='col-md-6 post-list'>
+        <h3>Current Post:</h3>
+
+        {{#each posts as |post|}}
+        <div class='row mb-2'>
+            <div class='col-md-8'>
+                <h4><a href='/post/{{post.id}}'>{{post.name}}</a></h4>
+            </div>
+            <div class='col-md-4'>
+                <button class='btn btn-sm btn-danger' data-id='{{post.id}}'>DELETE</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>
+
+<script src='./js/profile.js'></script>
