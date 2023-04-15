@@ -1,0 +1,53 @@
+{{!-- <div class="blogfeed">
+  <h2 class="dashheader"> Hello , {{{username}}} ! </h2>
+  <h3> Your Blogs </h3>
+  <div>
+    {{#each postsByUser as |post|}}
+    <a href="/post/{{post.id}}">
+
+      <div class="feed col-sm-10 col-9">
+        <h3>
+          {{post.post_sub}}
+        </h3>
+        <p>
+          {{post.post_descr}}
+          <br />
+        <div class="sig">
+          {{post.username}}
+          - at
+          {{format_time post.date}}
+          on
+          {{format_date post.date}}
+        </div>
+        </p>
+      </div>
+    </a>
+    <div class="updatepanel">
+      <div class="updateform" id="{{post.id}}" style="display: none">
+        <label for="subject">Update Post!</label>
+        <br />
+        <input class="input col-8" type="text" id="updatepostsub" name="subject" />
+        <br />
+        <br />
+        <label for="comment"></label>
+        <textarea id="updatepostdescr" name="comment" class="col-9" rows="10"></textarea>
+        <br />
+        <br />
+        <button class="inputUpdateFields btn btn-light"> Update </button>
+        <br />
+        <br />
+        <div id="cancelbtn"></div>
+      </div>
+    </div>
+    <button class="updatebtn btn btn-light" id="{{post.id}}">
+      Update
+    </button>
+    <button class="delbtn btn btn-light" id="{{post.id}}">
+      Delete
+    </button>
+    <br />
+    <br />
+    <br />
+    {{/each}}
+  </div>
+</div> --}}
