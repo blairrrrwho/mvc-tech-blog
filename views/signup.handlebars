@@ -1,5 +1,53 @@
+<div class='loginform'>
+  <div>
+    <h2 class='header'>Sign Up</h2>
+  </div>
+  <form>
+    <div class='form-group'>
+      <label for='username'>Username</label>
+      <input
+        type='text'
+        id='username'
+        class='form-control'
+        aria-describedby='username'
+        placeholder='Enter a username'
+      />
+    </div>
+    <br />
+    <div class='form-group'>
+      <label for='email'>Email</label>
+      <input
+        type='email'
+        class='form-control'
+        id='email'
+        aria-describedby='email'
+        placeholder='Enter email'
+      />
+      <small id='emailHelp' class='form-text text-muted'>We will keep your email
+        safe.</small>
+    </div>
+    <br />
+    <div class='form-group'>
+      <label for='password'>Password</label>
+      <input
+        type='password'
+        class='form-control'
+        id='password'
+        placeholder='Password'
+      />
+    </div>
+    <div>
+      <button type='submit' class='btn btn-dark signupbtn' id='signUpBtn'>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<script src='./js/userfeatures/signup.js'></script>
+
 {{! p2 }}
-<div class="loginform">
+{{! <div class="loginform">
   <div>
     <form class='form signup-form'>
       <div class='form-group'>
@@ -21,4 +69,4 @@
   </div>
 </div>
 
-<script src='./js/login.js'></script>
+<script src='./js/login.js'></script> }}

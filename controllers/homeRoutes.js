@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// Homepage
+// Homepage ====================================================
 router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
       ],
     });
 
-    // Serialize data so the template can read it
+    // Serialize data so the template can read it =================
     const posts = postData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Single post view
+// Single post view =================================================
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -59,7 +59,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
+// Use withAuth middleware to prevent access to route ==================
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -79,7 +79,7 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-// Login
+// Login ====================================================================
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
