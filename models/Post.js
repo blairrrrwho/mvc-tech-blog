@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class Post extends Model {}
 
+// Define table as Post; define the columns/fields for the table; and the configuration 
 Post.init(
   {
     id: {
@@ -11,12 +12,13 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
+    post_content: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     // date_created: {
     //   type: DataTypes.DATE,

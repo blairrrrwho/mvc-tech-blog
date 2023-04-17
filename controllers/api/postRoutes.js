@@ -37,7 +37,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 });
 
 // Update Post ===========================================================
-router.put("/dashboard", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     console.log(req.body.post_id);
     const updatePost = await Post.update(req.body, {
