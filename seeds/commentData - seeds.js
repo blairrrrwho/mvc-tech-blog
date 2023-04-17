@@ -4,16 +4,16 @@ const commentData = [
   {
     comment_body: 'Whooooaaaa pretty cool stuff right there.',
     user_id: 1,
-    post_id: 7,
+    post_id: 4,
   },
   {
     user_id: 2,
-    post_id: 6,
+    post_id: 3,
     comment_body: 'Wow, this sucks.',
   },
   {
     user_id: 3,
-    post_id: 5,
+    post_id: 2,
     comment_body: 'Can you explain to me how this works?',
   },
   {

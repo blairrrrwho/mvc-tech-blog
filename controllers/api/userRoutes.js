@@ -2,90 +2,91 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-
-
 // GET /api/users
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   // Access our User model and run .findAll() method
-  User.findAll({
-      attributes: { exclude: ['password'] }
-  })
-    .then(userData => res.json(userData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  try {
+    const userData = await User.findAll({
+      exclude: ['password']
+    })
+    res.status(200).json(userData)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+
 });
 
 // GET /api/users/1
 router.get('/:id', (req, res) => {
-  User.findOne({
-      attributes: { exclude: ['password']},
+  try {
+    const userData = User.findByPk({
       where: {
         id: req.params.id
       },
       include: [
-          {
+        {
+          model: Post,
+          attributes: ['id', 'title', 'post_body', 'created_at']
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_body', 'created_at'],
+          include: {
             model: Post,
-            attributes: ['id', 'title', 'post_body', 'created_at']
-          },
-          {
-              model: Comment,
-              attributes: ['id', 'comment_body', 'created_at'],
-              include: {
-                model: Post,
-                attributes: ['title']
-              }
+            attributes: ['title']
           }
-        ]
-
-  })
-    .then(userData => {
-      if (!userData) {
-        res.status(404).json({ message: 'No user found with this id' });
-        return;
-      }
-      res.json(userData);
+        }
+      ]
     })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    if (!userData) {
+      res.status(404).json({ message: "No user with this ID was found!" })
+      return;
+    }
+    res.status(200).json(userData)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
 });
 
 // POST /api/users
 router.post('/', (req, res) => {
-  User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    github: req.body.github
-  })
-  .then(userData => {
+  try {
+    const userData = User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      github: req.body.github
+    })
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.username = userData.username;
       req.session.github = userData.github;
       req.session.loggedIn = true;
-  
       res.json(userData);
-    });
-  });
+    })
+    res.status(200).json(userData)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
 });
 
-
+// router.get('/notes', (req, res) => {
+//   res.render(path.join(__dirname, "index.html"))
+// })
 
 // Login =============================================================
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ 
-      where: { 
-        email: req.body.email 
-      }, 
+    const userData = await User.findOne({
+      where: {
+        email: req.body.email
+      },
     });
     if (!userData) {
-      res.status(400).json({ 
+      res.status(400).json({
         message: 'Incorrect email, please try again'
       });
       return;
@@ -93,7 +94,7 @@ router.post('/login', async (req, res) => {
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ 
+      res.status(400).json({
         message: 'Incorrect password, please try again'
       });
       return;
@@ -156,9 +157,9 @@ router.post('/logout', (req, res) => {
 // PUT /api/users/1
 router.put('/:id', withAuth, (req, res) => {
   User.update(req.body, {
-      individualHooks: true,
-      where: {
-          id: req.params.id
+    individualHooks: true,
+    where: {
+      id: req.params.id
     }
   })
     .then(userData => {
