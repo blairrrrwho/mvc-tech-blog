@@ -123,7 +123,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
       'id',
       'title',
       'created_at',
-      'post_content'
+      'post_body'
     ],
     include: [
       {
@@ -170,7 +170,7 @@ router.get('/create/', withAuth, (req, res) => {
       'id',
       'title',
       'created_at',
-      'post_content'
+      'post_body'
     ],
     include: [
       {
