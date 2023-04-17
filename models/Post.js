@@ -1,12 +1,15 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Create the Post model
 class Post extends Model {}
 
-// Define table as Post; define the columns/fields for the table; and the configuration 
+// Defines a table called Post
 Post.init(
   {
+    // Defines columns/fields for the Post table
     id: {
+      // Configures the associations
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -20,11 +23,6 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    // date_created: {
-    //   type: DataTypes.DATE,
-    //   allowNull: false,
-    //   defaultValue: DataTypes.NOW,
-    // },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -35,6 +33,8 @@ Post.init(
   },
   {
     sequelize,
+    // adds a createdAt and updatedAt timestamps to the model
+    // default is true, so you can maybe take this line out
     timestamps: true,
     freezeTableName: true,
     underscored: true,

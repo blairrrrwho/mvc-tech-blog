@@ -10,11 +10,12 @@ class User extends Model {
   }
 }
 
-// Define table as User; define the columns/fields for the table; and the configuration 
+// Defines a table called User
 User.init(
   {
-    // Defines an id column; etc.     
+    // Defines the columns/fields for the User table
     id: {
+      // Configures the associations
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -26,7 +27,7 @@ User.init(
     },
     github: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -53,12 +54,17 @@ User.init(
       },
       // set up beforeUpdate lifecycle "hook" functionality
       async beforeUpdate(updatedUserData) {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
         return updatedUserData;
-      }
+      },
     },
     sequelize,
-    timestamps: true,
+    // adds a createdAt and updatedAt timestamps to the model
+    timestamps: false,
+    // timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'user',
