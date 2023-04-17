@@ -1,34 +1,34 @@
-console.log("ready to post a comment to a post");
+async function commentFormHandler(event) {
+  event.preventDefault();
 
-const newCommentBtn = document.getElementById("newComment");
+  const comment_body = document
+    .querySelector('textarea[name="comment-body"]')
+    .value.trim();
 
-newCommentBtn.addEventListener("click", async (e) => {
-  e.preventDefault();
+  const post_id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
 
-  const comment_body = document.getElementById("comment").value;
+  if (comment_body) {
+    const response = await fetch('/api/comments', {
+      method: 'POST',
+      body: JSON.stringify({
+        post_id,
+        comment_body,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  console.log(comment_body);
-
-  const url = window.location.href;
-  const data = url.split("/");
-  const post_id = data[data.length - 1];
-
-  console.log(post_id);
-
-  await fetch("/api/newcomment", {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      comment_body: comment_body,
-      post_id: post_id,
-    }),
-  }).then((res) => {
-    console.log(res);
-    if (res.status == 200) {
-      window.location.href = `/post/${post_id}`;
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert(response.statusText);
     }
-  });
-});
+  }
+}
+
+document
+  .querySelector('.comment-form')
+  .addEventListener('submit', commentFormHandler);
