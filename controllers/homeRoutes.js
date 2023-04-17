@@ -78,7 +78,6 @@ router.get('/signup', withAuth, async (req, res) => {
   }
 });
 
-
 // Single post view / directs to single-post page =====================================================
 // http://localhost:3001/post/1
 router.get('/post/:id', async (req, res) => {

@@ -14,13 +14,17 @@ router.get('/', async (req, res) => {
 // Create new comment =====================================================
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newComment = await Comment.create({
-      comment_body: req.body.comment_body,
-      user_id: req.session.user_id,
-      post_id: req.body.post_id,
-      date_created: req.body.timestamp,
-    });
-    res.status(200).json(newComment);
+    // check the session
+    if (req.session) {
+      const newComment = await Comment.create({
+        comment_body: req.body.comment_body,
+        // use the id from the session
+        user_id: req.session.user_id,
+        post_id: req.body.post_id,
+        // date_created: req.body.timestamp,
+      });
+      res.status(200).json(newComment);
+    }
   } catch (err) {
     res.status(400).json(err);
   }
@@ -40,7 +44,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
     res.status(200).json(commentData);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 

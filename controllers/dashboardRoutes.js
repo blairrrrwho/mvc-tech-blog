@@ -34,11 +34,10 @@ router.get('/', withAuth, async (req, res) => {
         },
       ],
     });
-    then((postData) => {
-      // serialize data before passing to template
-      const posts = postData.map((post) => post.get({ plain: true }));
-      res.render('dashboard', { posts, loggedIn: true });
-    });
+    // serialize data before passing to template
+    const posts = postData.map((post) => post.get({ plain: true }));
+    res.render('dashboard', { posts, loggedIn: true });
+  
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -80,7 +79,6 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     }
     // serialize the data
     const post = editPost.get({ plain: true });
-
     res.render('edit-post', {
       // post vs ...post?????????????????
       post,
