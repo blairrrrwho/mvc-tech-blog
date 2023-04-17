@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
     const postData = await Post.findAll({
-      order: [['date', 'DESC']],
+      // order: [['date', 'DESC']],
       attributes: ['id', 'title', 'created_at', 'post_body'],
       include: [
         {
