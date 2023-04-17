@@ -1,36 +1,12 @@
-<div class="col-8">
-    Comments:
-    {{#each comment as |comment|}}
-    <div class="comment">
-        {{comment.comment_body}}
-        <br />
-        <br />
-        <div class="sig">
-            {{comment.username}}
-            - at
-            {{format_time comment.date}}
-            on
-            {{format_date comment.date}}
-        </div>
+<div class="comments">
+  {{#each this}}
+  <section class="comment">
+    <div class="meta">
+      {{user.username}} on {{format_date created_at}}
     </div>
-    <br />
-    {{/each}}
-</div>
-
-<div>
-    <br />
-    {{#if loggedIn}}
-    <form>
-        <label for="comment"></label>
-        <textarea 
-            id="comment" placeholder="Say what you need to say" 
-            name="comment" rows="10" class="col-9">
-        </textarea>
-        <br />
-        <button class="btn btn-dark" id="newComment"> Post Comment </button>
-    </form>
-    {{else}}
-    <h2> <a href="/login">Click Here</a> to log in and start commenting! </h2>
-    {{/if}}
-</div>
+    <div class="text">
+      {{comment_body}}
+    </div>
+  </section>
+  {{/each}}
 </div>

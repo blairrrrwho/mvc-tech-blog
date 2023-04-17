@@ -1,52 +1,20 @@
-<div class='row'>
-  <div class='col-md-6'>
-    <h2>Login</h2>
-
-    <form class='form login-form'>
-      <div class='form-group'>
-        <label for='email-login'>Email:</label>
-        <input
-          class='form-input'
-          type='text'
-          id='email-login'
-          aria-describedby='email'
-          placeholder='Enter Email'
-        />
-      </div>
-
-      <div class='form-group'>
-        <label for='password-login'>password:</label>
-        <input
-          class='form-input'
-          type='password'
-          id='password-login'
-          placeholder='Enter Password'
-        />
-      </div>
-
-      <div class='form-group'>
-        <button
-          class='btn btn-primary'
-          type='submit'
-          class='btn btn-dark loginbtn'
-          id='logInBtn'
-        >Submit</button>
-      </div>
-    </form>
-  </div>
-
-  <div class='col-md-6'>
-    <h2>Signup</h2>
-
-  <br />
-  <small id="signupinfo" class="form-text text-muted">Dont have an account? Sign
-    up!
-  </small>
-  <br />
+<div class="column">
+<h2 class="title pb-4">login:</h2><hr>
+<form class="login-form">
   <div>
-    <a href="/signup"><button class="btn btn-dark signupbtn">
-        Sign Up!
-      </button></a>
+    <label for="email-login">email:</label>
+    <input type="text" id="email-login" />
   </div>
-  <script src="./js/userfeatures/login.js"></script>
+  <div>
+    <label for="password-login">password:</label>
+    <input type="password" id="password-login" />
+  </div>
+  <div>
+    <button type="submit" class="button is-primary">login</button>
+    <a href="/signup"><button type="button" class="button is-danger">signup</button></a>
+  </div>
+</form>
 </div>
+
+<!-- javascript file-->
+<script src="/javascript/login.js"></script>

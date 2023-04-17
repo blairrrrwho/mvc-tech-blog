@@ -1,71 +1,31 @@
-<div class='loginform'>
+<div class="column">
+<h2 class="title pb-4">create new account:</h2><hr>
+<form class="signup-form">
   <div>
-    <h2 class='header'>Sign Up</h2>
+    <label for="username-signup">username:</label>
+    <input type="text" id="username-signup" />
   </div>
-  <form>
-    <div class='form-group'>
-      <label for='username'>Username</label>
-      <input
-        type='text'
-        id='username'
-        class='form-control'
-        aria-describedby='username'
-        placeholder='Enter a username'
-      />
-    </div>
-    <br />
-    <div class='form-group'>
-      <label for='email'>Email</label>
-      <input
-        type='email'
-        class='form-control'
-        id='email'
-        aria-describedby='email'
-        placeholder='Enter email'
-      />
-      <small id='emailHelp' class='form-text text-muted'>We will keep your email safe.</small>
-    </div>
-    <br />
-    <div class='form-group'>
-      <label for='password'>Password</label>
-      <input
-        type='password'
-        class='form-control'
-        id='password'
-        placeholder='Password'
-      />
-    </div>
+  <div>
+    <label for="email-signup">email:</label>
+    <input type="text" id="email-signup" />
+  </div>
+<div>
+    <label for="twitter-signup">twitter:</label>
+    <input type="text" id="twitter-signup" />
+  </div>
     <div>
-      <button type='submit' class='btn btn-dark signupbtn' id='signUpBtn'>
-        Submit
-      </button>
-    </div>
-  </form>
-</div>
-
-<script src='./js/userfeatures/signup.js'></script>
-
-{{! p2 }}
-{{! <div class="loginform">
-  <div>
-    <form class='form signup-form'>
-      <div class='form-group'>
-        <label for='name-signup'>name:</label>
-        <input class='form-input' type='text' id='name-signup' />
-      </div>
-      <div class='form-group'>
-        <label for='email-signup'>email:</label>
-        <input class='form-input' type='text' id='email-signup' />
-      </div>
-      <div class='form-group'>
-        <label for='password-signup'>password:</label>
-        <input class='form-input' type='password' id='password-signup' />
-      </div>
-      <div class='form-group'>
-        <button class='btn btn-primary' type='submit'>signup</button>
-      </div>
-    </form>
+    <label for="github-signup">github:</label>
+    <input type="text" id="github-signup" />
   </div>
+  <div>
+    <label for="password-signup">password:</label>
+    <input type="password" id="password-signup" />
+  </div>
+  <div>
+    <button type="submit" class="button is-primary">signup</button>
+  </div>
+</form>
 </div>
 
-<script src='./js/login.js'></script> }}
+<!-- javascript file-->
+<script src="/javascript/signup.js"></script>

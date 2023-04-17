@@ -1,31 +1,23 @@
-<div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{{get_emoji}}}</p>
-  <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-</div>
-
-
-
-<a href="/dashboard" class="go-back"> &larr; Back to dashboard</a>
-<br>
-<br>
+<!-- displaying articles -->
 {{> post-info post}}
 
+<!-- displaying form and comments-->
+<!-- only display if logged in -->
 {{#if loggedIn}}
 <form class="comment-form">
-    <div>
-        <textarea name="comment-body">Let's hear it</textarea>
-    </div>
+  <div>
+    <textarea class="ml-5" name="comment-body"></textarea>
+  </div>
 
-    <div>
-        <button type="submit">Add Comment</button>
-    </div>
+  <div>
+    <button class="button is-warning ml-5 mb-5" type="submit">add comment</button>
+  </div>
+  
 </form>
 {{/if}}
 
 {{> comments post.comments}}
 
 {{#if loggedIn}}
-<script src="/js/comment.js"></script>
+<script src="/javascript/comment.js"></script>
 {{/if}}

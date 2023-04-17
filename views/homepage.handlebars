@@ -1,53 +1,8 @@
-<div>
-  <div>
-    {{#if loggedIn}}
-      <h2 class='writeanewblog'>
-        Create a New Blog!
-        <button class='btn btn-light' id='createblogbtn'>create</button></h2>
-      <form class='blogform' style='display: none'>
-        <label for='subject'>Write A Post!</label>
-        <br />
-        <input class='input col-8' type='text' id='sub' name='subject' />
-        <br />
-        <br />
-        <label for='body'></label>
-        <textarea id='body' name='body' rows='10' class='col-9'></textarea>
-        <br />
-        <br />
-        <button id='newPost' class='btn btn-light'> Publish </button>
-      </form>
-    {{else}}
-      <h2 class='writeanewblog'>
-        <a href='/login'>Log in</a>
-        to Create a Blog!
-      </h2>
-    {{/if}}
-  </div>
-  <div class='blogfeed'>
-    <h3>
-      Blog Feed
-    </h3>
-    {{#each posts as |post|}}
-      <a href='/post/{{post.id}}'>
-        <div class='row'>
-          <div class='feed col-10'>
-            <h3>
-              {{post.title}}
-            </h3>
-            <p>
-              {{post.post_body}}
-              <br />
-              <div class='sig'>
-                {{post.username}}
-                - at
-                {{format_time post.date}}
-                on
-                {{format_date post.date}}
-              </div>
-            </p>
-          </div>
-        </div>
-      </a>
-    {{/each}}
-  </div>
+{{#each posts as |post|}}
+
+{{> post-info post }}
 </div>
+
+{{else}}
+<h6 class="pb-4 has-text-centered is-italic">there are currently no posts</h6>
+{{/each}}
