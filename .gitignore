@@ -6,6 +6,7 @@ node_modules
 package-lock.json
 notes.md
 .env
+routes.md
 
 # Logs
 logs

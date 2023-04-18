@@ -1,6 +1,40 @@
 {{#each posts as |post|}}
+      <a href='/post/{{post.id}}'>
+        {{! displays the name of the Post and makes it clickable to that ^ route }}
+      </a>
+{{!-- > is used to point to the partial template 'post-info' --}}
+{{!-- So, {{> post-info post }} is telling Handlebars to include 
+the post-info partial template and pass the post object as a context to it. 
+The partial template will then render the contents using the values of 
+the post object. --}}
+{{!-- {{> post-info post }} --}}
+<div class="card mb-6">
+    <header class="card-header card-header-title has-background-grey-lighter">
 
-{{> post-info post }}
+        <div class="column">
+            <p class=" has-text-primary-light"></p>
+            <a href="/post/{{post.id}}" class="has-text-black is-capitalized is-pulled-left">
+                {{title}} </a></p>
+        </div>
+
+        <div class="column">
+            <span class=""> </span>
+        </div>
+
+    </header>
+
+    <div class="card-content">
+        <div class="content has-text-justified">
+            {{post_body}}
+        </div>
+        <div class="is-pulled-right">
+            <b>{{user.username}}</b> |
+            <a href="https://github.com/{{user.github}}"><i class="fab fa-github"></i></a>
+            | {{format_date created_at}} | <a href="/comment/{{id}}">{{comments.length}} {{format_plural "comment"
+                comments.length}}</a>
+        </div>
+
+    </div>
 </div>
 
 {{else}}

@@ -10,3 +10,99 @@
   </section>
   {{/each}}
 </div>
+
+Skip to content
+Search or jump to…
+Pulls
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@blairrrrwho 
+blairrrrwho
+/
+another-bad-music-review
+Public
+Cannot fork because you own this repository and are not a member of any organizations.
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+More
+Beta Try the new code view
+another-bad-music-review/views/post.handlebars
+@blairrrrwho
+blairrrrwho Update post.handlebars
+Latest commit 280e19e 4 days ago
+ History
+ 1 contributor
+63 lines (54 sloc)  1.65 KB
+ 
+
+<div class='card postcard mb-6'>
+  <header class="card-header card-header-title has-background-grey-lighter">
+    <div class="column">
+      <h3>
+        {{title}}
+      </h3>
+    </div>
+    <div class="column">
+      <span class=""> </span>
+    </div>
+  </header>
+  <br>
+
+  <div class="card-content">
+    <h5 class="card-music">Artist - Album - Track</h5>
+      <h4>{{artist}}</h4> 
+      <h4>{{album}}</h4> 
+      <h4>{{song}}</h4>
+      <br><br>
+  </div>
+  <div class="text-center">
+    <h5 class="desc">{{description}}</h5> <br><br>
+  </div>
+  <p class="comment-post">Created by <a href="/user/{{user_id}}">{{user.name}}</a> 
+    on {{format_date date_created}}</p><br>
+  <div class="thumbs" data-lyket-type='updown' data-lyket-id='my-first-post'></div>
+</div>
+
+<br />
+<h6>Comments:</h6>
+<div class="comment">
+{{#each com as |comment|}}
+
+"{{comment.comment_body}}" -- posted by an anonymous music snobber
+{{!-- <a href="/user/{{user_id}}">df</a> --}}
+<br> 
+{{/each}}
+<br /><br><br><br>
+</div>
+
+{{#if logged_in}}
+<br /><br /><br>
+<form class='form new-comment-form'>
+  <div class='comment-group'>
+    <label for='comment-name'>How bad is my music taste?</label>
+    <input class='form-input' placeholder='Comment..' type='text' id='comment-name' name='comment-name' />
+  </div>
+  <div class='form-group'>
+    <button type='submit' class='btn btn-primary' class="comment-name" id='comment'>Post Comment</button>
+  </div>
+</form>
+
+{{else}}
+<p>Have comments?</p>
+<a href='/login'> Login first, goofball.</a>
+{{/if}}
+
+<script src='https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_f4fc27bfe559f3d29b01bbf674da0f'></script>
+
+<script src="./js/profile.js"></script>
+
+</div>

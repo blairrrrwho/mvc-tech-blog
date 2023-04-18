@@ -3,11 +3,11 @@ const { Post, User, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-// Get all users ================================================
-router.get('/', (req, res) => {
+// Get post by id ================================================
+router.get('/post/:id', (req, res) => {
   console.log('======================');
   Post.findAll({
-    attributes: ['id', 'title', 'created_at', 'post_body'],
+    attributes: ['id', 'title', 'created_at', 'updated at', 'post_body'],
     order: [['created_at', 'DESC']],
     include: [
       // Comment model here -- attached username to comment
