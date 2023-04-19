@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+const sequelize = require("../../config/connection");
 const withAuth = require('../../utils/auth');
 
 // GET /api/users
@@ -18,9 +19,9 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/users/1
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const userData = User.findByPk({
+    const userData = await User.findByPk({
       where: {
         id: req.params.id
       },
@@ -46,69 +47,21 @@ router.get('/:id', (req, res) => {
     res.status(200).json(userData)
   } catch (err) {
     console.log(err)
+    console.log("userRoutes")
     res.status(500).json(err)
   }
 });
 
-
-router.post('/login', async (req, res) => {
+// Create User
+router.post('/', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
-
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
+    const userData = await User.create(req.body);
     req.session.save(() => {
       req.session.user_id = userData.id;
+      // req.session.username = userData.username;
+      // req.session.github = userData.github;
       req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
-
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
-
-// POST /api/users
-router.post('/', (req, res) => {
-  try {
-    const userData = User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-      github: req.body.github
-    })
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.username;
-      req.session.github = userData.github;
-      req.session.logged_in = true;
-      res.json(userData);
+      res.json({ user: userData, message: "You are now logged in!"});
     })
     res.status(200).json(userData)
   } catch (err) {
@@ -117,11 +70,7 @@ router.post('/', (req, res) => {
   }
 });
 
-// router.get('/notes', (req, res) => {
-//   res.render(path.join(__dirname, "index.html"))
-// })
-
-// Login =============================================================
+// Log In =============================================================
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -143,19 +92,17 @@ router.post('/login', async (req, res) => {
       });
       return;
     }
-
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      
+      req.session.logged_in = true; 
       res.json({ user: userData, message: 'You are now logged in!' });
     });
-
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
+// Log Out =============================================================
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -166,25 +113,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-//     const username = await userData.returnUserName();
-
-//     req.session.save(() => {
-//       req.session.logged_in = true;
-//       req.session.user_id = userData.id;
-//       req.session.username = userData.username;
-//       req.session.github = userData.github;
-//       res.status(200).json({ user: userData, message: 'You are logged in!' });
-//       console.log("you are now logged in and session has been saved.");
-//     });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
-
-
-// ??
-// Sign up ====================================================================
+// Sign Up ====================================================================
 router.post('/signup', async (req, res) => {
   try {
     const newUser = User.create({
@@ -202,24 +131,6 @@ router.post('/signup', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-
-
-
-// Logout =====================================================================
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
-
-
-
 
 // PUT /api/users/1
 router.put('/:id', withAuth, (req, res) => {
@@ -261,11 +172,5 @@ router.delete('/:id', withAuth, (req, res) => {
       res.status(500).json(err);
     });
 });
-
-module.exports = router;
-
-
-
-
 
 module.exports = router;

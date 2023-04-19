@@ -21,7 +21,8 @@
           <a href="/" class="navbar-item is-hoverable pt-1">Homepage</a>
           <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
           <a href="/dashboard/create" class="navbar-item is-hoverable pt-1 mr-4">Create Post</a>
-          <button id="logout" class="button is-danger">Logout</button>
+          <a href="/logout" class="navbar-item is-hoverable pt-1 button is-success is-outlined">
+            Leave</a>
         </li>
       </ul>
       {{else}}
@@ -49,7 +50,7 @@
         <a href="/">Homepage</a>
         {{#if logged_in}} |
         <a href="/dashboard/">Dashboard</a> |
-        <a href="/dashboard/create/">Create Post</a>
+        <a href="/dashboard/create/">Create Post</a> | <a href="/logout">Leave</a>
         {{else}}
         | <a href="/login">Log In</a> | <a href="/signup">Sign Up</a>
         {{/if}}
@@ -61,13 +62,13 @@
     </div>
   </footer>
 </div>
-
+{{!-- 
 {{#if logged_in}}
 <script src="/js/logout.js"></script>
 {{/if}}
 {{#if logged_in}}
 <script src='/js/comment.js'></script>
-{{/if}}
+{{/if}} --}}
 
 </body>
 

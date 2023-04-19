@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
-const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
 // Get post by id ================================================
-router.get('/post/:id', (req, res) => {
-  console.log('======================');
-  Post.findAll({
+router.get('/post/:id', withAuth, async(req, res) => {
+  console.log('made it to get post by id');
+  try {
+    const idPost = await Post.findByPk({
     attributes: ['id', 'title', 'created_at', 'updated at', 'post_body'],
     order: [['created_at', 'DESC']],
     include: [
@@ -25,11 +25,16 @@ router.get('/post/:id', (req, res) => {
       },
     ],
   })
-    .then((postData) => res.json(postData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  const posts = idPost.map((post) => post.get({ plain: true }));
+  const comment = idPost.comments.map((test) => test.get({ plain: true }))
+  res.render('single-post', {
+    posts,
+    comment,
+    logged_in: req.session.logged_in,
+  });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Get all users by id ===========================================
@@ -70,18 +75,32 @@ router.get('/:id', (req, res) => {
 
 // Create post ====================================================
 router.post('/', withAuth, async (req, res) => {
+  console.log("made it to create post route");
   try {
     const newPost = await Post.create({
-      title: req.body.title,
-      post_body: req.body.post_content,
+      ...req.body,
       user_id: req.session.user_id,
     });
 
     res.status(200).json(newPost);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
+
+// router.post('/', withAuth, async (req, res) => {
+//   try {
+//     const newPost = await Post.create({
+//       title: req.body.title,
+//       post_body: req.body.post_content,
+//       user_id: req.session.user_id,
+//     });
+
+//     res.status(200).json(newPost);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // Delete post ===========================================================
 router.delete('/:id', withAuth, async (req, res) => {
