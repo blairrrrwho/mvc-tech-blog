@@ -107,7 +107,7 @@ router.post('/', (req, res) => {
       req.session.user_id = userData.id;
       req.session.username = userData.username;
       req.session.github = userData.github;
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
       res.json(userData);
     })
     res.status(200).json(userData)
@@ -143,20 +143,43 @@ router.post('/login', async (req, res) => {
       });
       return;
     }
-    const username = await userData.returnUserName();
 
     req.session.save(() => {
-      req.session.loggedIn = true;
       req.session.user_id = userData.id;
-      req.session.username = userData.username;
-      req.session.github = userData.github;
-      res.status(200).json({ user: userData, message: 'You are logged in!' });
-      console.log("you are now logged in and session has been saved.");
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
+
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+//     const username = await userData.returnUserName();
+
+//     req.session.save(() => {
+//       req.session.logged_in = true;
+//       req.session.user_id = userData.id;
+//       req.session.username = userData.username;
+//       req.session.github = userData.github;
+//       res.status(200).json({ user: userData, message: 'You are logged in!' });
+//       console.log("you are now logged in and session has been saved.");
+//     });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 
 
@@ -170,7 +193,7 @@ router.post('/signup', async (req, res) => {
       password: req.body.password,
     });
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
       req.session.username = req.body.username;
       res.status(200).json(newUser);
     });
@@ -185,7 +208,7 @@ router.post('/signup', async (req, res) => {
 
 // Logout =====================================================================
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });

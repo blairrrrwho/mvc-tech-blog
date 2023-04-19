@@ -19,6 +19,7 @@ a {
 
 a:hover {
   color: #3486eb;
+  text-decoration: none;
 }
 
 button {

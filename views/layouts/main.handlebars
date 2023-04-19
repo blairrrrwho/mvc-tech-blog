@@ -15,25 +15,28 @@
   <header>
     <h1 class="has-text-black px-3 py-3 has-text-weight-bold">Another Tech Blog</h1>
     <nav class="navbar mt-2">
-      {{#if loggedIn}}
+      {{#if logged_in}}
       <ul>
         <li>
           <a href="/" class="navbar-item is-hoverable pt-1">Homepage</a>
           <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
-          <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">Create Post</a>
+          <a href="/dashboard/create" class="navbar-item is-hoverable pt-1 mr-4">Create Post</a>
           <button id="logout" class="button is-danger">Logout</button>
         </li>
       </ul>
-
       {{else}}
       <ul>
         <li>
-          <a href="/" class="navbar-item is-hoverable pt-1">Homepage</a>
-          <a href="/login" class="button is-primary">Login</a>
+          <a href="/" class="navbar-item is-hoverable pt-1 button is-warning">
+            Homepage</a><br>
+          <a href="/login" class="navbar-item is-hoverable pt-1 button is-link is-outlined">
+            Log In</a><br>
+          <a href="/signup" class="navbar-item is-hoverable pt-1 button is-success is-outlined">
+            Sign Up</a>
         </li>
       </ul>
-
       {{/if}}
+
     </nav>
   </header>
 
@@ -41,29 +44,25 @@
     {{{ body }}}
   </main>
 
-  <footer class="footer rows pb-2">
+  <footer class="footer rows">
     <div class="content has-text-centered">
-      <p>
         <a href="/">Homepage</a>
-        {{#if loggedIn}} |
+        {{#if logged_in}} |
         <a href="/dashboard/">Dashboard</a> |
-        <a href="/dashboard/create/">Create New Post</a>
+        <a href="/dashboard/create/">Create Post</a>
         {{else}}
-        | <a href="/login/">Login</a>
+        | <a href="/login">Log In</a> | <a href="/signup">Sign Up</a>
         {{/if}}
-      </p>
     </div>
     <div class="row-is-full content has-text-centered">
-      <p>
         &copy; 2023 blair's blog
-        <a href="https://github.com/blairrrrwho"><i class="fab fa-github"></i></a> |
+        <a href="https://github.com/blairrrrwho"> | <i class="fab fa-github"></i></a> |
         <a href="mailto:blair10324@gmail.com"><i class="far fa-envelope"></i></a>
-      </p>
     </div>
   </footer>
 </div>
 
-{{#if loggedIn}}
+{{#if logged_in}}
 <script src="/js/logout.js"></script>
 {{/if}}
 {{#if logged_in}}

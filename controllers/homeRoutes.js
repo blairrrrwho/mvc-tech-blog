@@ -6,7 +6,7 @@ const withAuth = require("../utils/auth");
 
 // Homepage / directs to get all posts =================================================================================
 // http://localhost:3001/
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   console.log(req.session);
   try {
     // Get all posts and JOIN with user data
@@ -36,9 +36,9 @@ router.get("/", async (req, res) => {
     });
     // serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-    res.render("homepage", {
+    res.render('homepage', {
       posts,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
@@ -78,7 +78,7 @@ router.get("/", async (req, res) => {
 //     // console.log(com);
 
 //     res.render('single-post', {
-//       ...post,
+//       post,
 //       com,
 //       logged_in: req.session.logged_in,
 //     });
@@ -88,30 +88,35 @@ router.get("/", async (req, res) => {
 // });
 
 // Login / directs to login page ==========================================================================
-router.get("/login", (req, res) => {
+router.get('/login', (req, res) => {
   try {
-    res.render("login", {});
+    res.render('login', {});
+    // If the user is already logged in, redirect the request to another route
+    if (req.session.logged_in) {
+      res.redirect('dashboard');
+      return;
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-  res.render('login');
-});
+// router.get('/login', (req, res) => {
+//   // If the user is already logged in, redirect the request to another route
+//   if (req.session.logged_in) {
+//     res.redirect('dashboard');
+//     return;
+//   }
+//   res.render('login');
+// });
 
 
 // SignUp / directs to signup page - Use withAuth middleware to prevent access to route ====================
 // http://localhost:3001/signup
-router.get("/signup", withAuth, async (req, res) => {
+router.get('/signup', async (req, res) => {
   try {
-    res.render("signup", {});
+    res.render('signup', {});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
