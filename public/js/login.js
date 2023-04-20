@@ -1,3 +1,5 @@
+console.log("ready to log in");
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -21,8 +23,6 @@ const loginFormHandler = async (event) => {
     }
   }
 };
-
-
 
 document
   .querySelector('.login-form')

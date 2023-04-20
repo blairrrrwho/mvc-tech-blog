@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel='icon' type='image/x-icon' href='/assets/images/favicon.ico' />
 </head>
 
 <div class="wrapper">
@@ -18,11 +19,23 @@
       {{#if logged_in}}
       <ul>
         <li>
-          <a href="/" class="navbar-item is-hoverable pt-1">Homepage</a>
-          <a href="/dashboard" class="navbar-item is-hoverable pt-1">Dashboard</a>
-          <a href="/dashboard/create" class="navbar-item is-hoverable pt-1 mr-4">Create Post</a>
-          <a href="/logout" class="navbar-item is-hoverable pt-1 button is-success is-outlined">
-            Leave</a>
+          <a href="/" class="navbar-item is-hoverable pt-1" id="main-title">
+            Homepage</a>
+        </li>
+        <li>
+          <a href="/dashboard" class="navbar-item is-hoverable pt-1">
+            Dashboard</a>
+        </li>
+        <li>
+          <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">
+            Create Post</a>
+        </li>
+        <li>
+          <a href='/profile'>Profile</a>
+        </li>
+        <li>
+          <button class="navbar-item is-hoverable pt-1 button is-success is-outlined" id="logout">
+            Leave</button>
         </li>
       </ul>
       {{else}}
@@ -30,8 +43,12 @@
         <li>
           <a href="/" class="navbar-item is-hoverable pt-1 button is-warning">
             Homepage</a><br>
+        </li>
+        <li>
           <a href="/login" class="navbar-item is-hoverable pt-1 button is-link is-outlined">
             Log In</a><br>
+        </li>
+        <li>
           <a href="/signup" class="navbar-item is-hoverable pt-1 button is-success is-outlined">
             Sign Up</a>
         </li>
@@ -47,28 +64,39 @@
 
   <footer class="footer rows">
     <div class="content has-text-centered">
-        <a href="/">Homepage</a>
-        {{#if logged_in}} |
-        <a href="/dashboard/">Dashboard</a> |
-        <a href="/dashboard/create/">Create Post</a> | <a href="/logout">Leave</a>
-        {{else}}
-        | <a href="/login">Log In</a> | <a href="/signup">Sign Up</a>
-        {{/if}}
+      <a href="/">Homepage</a>
+      {{#if logged_in}} |
+      <a href="/dashboard/">Dashboard</a> |
+      <a href="/dashboard/create/">Create Post</a> | <a href="/logout">Leave</a>
+      {{else}}
+      | <a href="/login">Log In</a> | <a href="/signup">Sign Up</a>
+      {{/if}}
     </div>
     <div class="row-is-full content has-text-centered">
-        &copy; 2023 blair's blog
-        <a href="https://github.com/blairrrrwho"> | <i class="fab fa-github"></i></a> |
-        <a href="mailto:blair10324@gmail.com"><i class="far fa-envelope"></i></a>
+      &copy; 2023 blair's blog
+      <a href="https://github.com/blairrrrwho"> | <i class="fab fa-github"></i></a> |
+      <a href="mailto:blair10324@gmail.com"><i class="far fa-envelope"></i></a>
     </div>
   </footer>
 </div>
-{{!-- 
+
+
 {{#if logged_in}}
-<script src="/js/logout.js"></script>
+{{!--
+<script src='/js/logout.js'></script> --}}
+{{!--
+<script src="/js/create-post.js"></script>
+<script src="/js/update-post.js"></script>
+<script src="/js/edit-post.js"></script>
+<script src="/js/delete-post.js"></script>
+<script src="/js/comment.js"></script> --}}
 {{/if}}
-{{#if logged_in}}
-<script src='/js/comment.js'></script>
-{{/if}} --}}
+
+{{!-- DON'T PUT THESE HERE -______- ----> will throw error for add event listener bc it's trying to look for the
+"submit" log in / sign up buttons
+<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>
+--}}
 
 </body>
 

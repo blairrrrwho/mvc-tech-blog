@@ -11,15 +11,16 @@
   </header>
 
   <div class="card-content">
-    <div class="content has-text-justified">
+    <div class="content has-text-justified desc">
       {{post_body}}
     </div>
   </div>
 
-  <b><a>{{user.username}}</a></b>
+  <b><a class="comment-post">{{user.username}}</a></b>
   <br>
   <a href="https://github.com/{{user.github}}"><i class="fab fa-github"></i></a>
   <br>
   {{format_date created_at}} <a href="/post/{{id}}"></a>
 
 </div>
+

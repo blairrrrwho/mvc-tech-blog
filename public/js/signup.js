@@ -1,3 +1,7 @@
+console.log("ready to sign up");
+// document.addEventListener("DOMContentLoaded", function() {
+//   // your code goes here
+// });
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
@@ -5,12 +9,13 @@ const signupFormHandler = async (event) => {
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
   const github = document.querySelector('#github-signup').value.trim();
+  const bio = document.querySelector('#bio-signup').value.trim();
 
 
-  if (username && email && password && github)  {
-    const response = await fetch('/api/users', {
+  if (username && email && password && github && bio)  {
+    const response = await fetch('/api/users/signup', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password, github}),
+      body: JSON.stringify({ username, email, password, github, bio}),
       headers: { 'Content-Type': 'application/json' },
     });
 

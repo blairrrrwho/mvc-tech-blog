@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Create post ====================================================
-router.post('/', withAuth, async (req, res) => {
+router.post('/create', withAuth, async (req, res) => {
   console.log("made it to create post route");
   try {
     const newPost = await Post.create({
