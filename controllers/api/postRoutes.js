@@ -7,7 +7,7 @@ router.get('/post/:id', withAuth, async(req, res) => {
   console.log('made it to get post by id');
   try {
     const idPost = await Post.findByPk({
-    attributes: ['id', 'title', 'created_at', 'updated at', 'post_body'],
+    attributes: ['id', 'title', 'created_at', 'post_body'],
     order: [['created_at', 'DESC']],
     include: [
       // Comment model here -- attached username to comment
@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Create post ====================================================
-router.post('/create', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   console.log("made it to create post route");
   try {
     const newPost = await Post.create({
@@ -88,19 +88,19 @@ router.post('/create', withAuth, async (req, res) => {
   }
 });
 
-// router.post('/', withAuth, async (req, res) => {
-//   try {
-//     const newPost = await Post.create({
-//       title: req.body.title,
-//       post_body: req.body.post_content,
-//       user_id: req.session.user_id,
-//     });
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newPost = await Post.create({
+      title: req.body.title,
+      post_body: req.body.post_content,
+      user_id: req.session.user_id,
+    });
 
-//     res.status(200).json(newPost);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // Delete post ===========================================================
 router.delete('/:id', withAuth, async (req, res) => {

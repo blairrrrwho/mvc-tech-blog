@@ -14,24 +14,3 @@
   </section>
   {{/each}}
 </div>
-
-{{#if logged_in}}
-<br /><br /><br>
-<form class='form new-comment-form'>
-  <div class='comment-group'>
-    <label for='comment-name'>Tell them about it!</label>
-    <input class='form-input' placeholder='Comment..' type='text' id='comment-name' name='comment-name' />
-  </div>
-  <div class='form-group'>
-    <button type='submit' class='btn btn-primary' class="comment-name" id='comment'>Post Comment</button>
-  </div>
-</form>
-<br> <br>
-{{else}}
-<div class="has-text-centered">
-<p>Have comments?</p>
-<a href="/login" class="button is-link is-hoverable pt-1 is-inverted ">Log In</a>
-
-
-
-<script src="/public/js/comment.js"></script>

@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     // Get all posts and JOIN with user data
     const postData = await Post.findAll({
       // order: [['date', 'DESC']],
-      attributes: ["id", "title", "created_at", "updated_at", "post_body"],
+      attributes: ["id", "title", "created_at", "post_body"],
       include: [
         {
           model: Comment,
@@ -86,19 +86,19 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // Login / directs to login page ==========================================================================
-router.get('/login', (req, res) => {
-  try {
-    res.render('login', {});
-    // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
-      res.redirect('dashboard');
-      return;
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+// router.get('/login', (req, res) => {
+//   try {
+//     res.render('login', {});
+//     // If the user is already logged in, redirect the request to another route
+//     if (req.session.logged_in) {
+//       res.redirect('dashboard');
+//       return;
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get("/user", async (req, res)=> {
   try {
@@ -146,7 +146,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('dashboard');
+    res.redirect('/dashboard');
     return;
   }
   res.render('login');

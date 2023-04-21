@@ -3,28 +3,34 @@
   {{> post-info post}}
 </div>
 
+<div>
+  {{> comments post.comments}}
+</div>
 
-{{> comments post.comments}}
 
 <!-- displaying form and comments-->
 <!-- only display if logged in -->
 {{#if logged_in}}
-<form class="comment-form">
-  <div>
-    <textarea class="ml-5" name="comment-body"></textarea>
+<br /><br /><br>
+<form class='form new-comment-form'>
+  <div class='comment-group'>
+    <label for='comment-name'>Tell them about it!</label>
+    <input class='form-input' placeholder='Comment..' type='text' id='comment-body' name='comment-body' />
   </div>
-
-  <div>
-    <button class="button is-warning ml-5 mb-5" type="submit">Add Comment</button>
+  <div class='form-group'>
+    <button type='submit' class='btn btn-primary button' id='commentBtn'>Add Comment</button>
   </div>
-  
 </form>
+<br> <br>
+
+{{else}}
+<div class="has-text-centered">
+<p>Have comments?</p>
+<a href="/login" class="button is-link is-hoverable pt-1 is-inverted ">Log In</a>
+
+</div>
 {{/if}}
 
-
-{{!-- {{#if logged_in}}
+{{#if logged_in}}
 <script src="/js/comment.js"></script>
-{{/if}} --}}
-<script src="/js/edit-post.js"></script>
-<script src="/js/delete-post.js"></script>
-<script src="/js/update-post.js"></script>
+{{/if}}

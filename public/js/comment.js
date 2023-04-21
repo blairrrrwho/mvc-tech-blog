@@ -1,36 +1,65 @@
 console.log("ready to comment on a post");
 
-const newCommentBtn = document.getElementById("comment");
+async function commentFormHandler(event) {
+  event.preventDefault();
 
-newCommentBtn.addEventListener("click", async (e) => {
-  e.preventDefault();
+  const comment_body = document.querySelector
+    ('input[name="comment-body"]').value.trim();
 
-  const comment_body = document.getElementById("comment-name").value;
 
-  console.log(comment_body);
+  if (comment_body) {
+    const response = await fetch('/api/comment', {
+      method: 'POST',
+      body: JSON.stringify({
+        comment_body
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const url = window.location.href;
-  const data = url.split("/");
-  const post_id = data[data.length - 1];
-  const user_id = data[data.length - 1];
-
-  console.log(post_id);
-
-  await fetch("/api/comment", {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      comment_body: comment_body,
-      post_id: post_id,
-      user_id: user_id,
-    }),
-  }).then((res) => {
-    console.log(res);
-    if (res.status == 200) {
-      window.location.href = `/post/${post_id}`;
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert(response.statusText);
     }
-  });
-});
+  }
+}
+
+document.querySelector('.new-comment-form')
+  .addEventListener('submit', commentFormHandler);
+
+
+
+  
+// const newCommentBtn = document.getElementById("commentBtn");
+
+// newCommentBtn.addEventListener("submit", async (e) => {
+//   e.preventDefault();
+
+//   const comment_body = document.getElementById("comment-body").value.trim();
+
+//   console.log(comment_body);
+
+//   const url = window.location.href;
+//   const data = url.split("/");
+//   const post_id = data[data.length - 1];
+//   const user_id = data[data.length - 1];
+
+//   const response = await fetch("/api/comment", {
+//     method: "POST",
+//     body: JSON.stringify({
+//       comment_body,
+//     }),
+//     headers: {
+//       Accept: "application/json, text/plain, */*",
+//       "Content-Type": "application/json",
+//     },
+
+//   }).then((res) => {
+//     console.log(res);
+//     if (res.status == 200) {
+//       window.location.href = `/post/${post_id}`;
+//     }
+//   });
+// });

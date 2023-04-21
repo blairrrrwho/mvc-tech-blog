@@ -1,7 +1,5 @@
 console.log("ready to sign up");
-// document.addEventListener("DOMContentLoaded", function() {
-//   // your code goes here
-// });
+
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
