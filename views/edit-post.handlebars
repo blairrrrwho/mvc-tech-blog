@@ -1,14 +1,14 @@
 <article>
   <a href="/dashboard" class="is-pulled-right"> &larr; back to dashboard</a>
-  <h2 class="title mt-5">Edit</h2><hr>
+  <h2 class="title mt-5">Edit Post</h2><hr>
   <form class="edit-post-form">
     <div>
         <label for="post-title">Post Title</label>
-      <input class="input" name="post-title" type="text" value="{{post.title}}" />
+      <input class="input post-title" name="post-title" type="text" value="{{post.title}}" />
     </div>
     <div>
         <label for="post-content">Post Content:</label>
-      <input class="textarea" name="post-content" type="text" value="{{post.post_body}}" />
+      <input class="textarea post-content" name="post-content" type="text" value="{{post.post_body}}" />
     </div>
     <div class="is-pulled-right">
        Created by you on {{format_date post.created_at}}
@@ -20,7 +20,8 @@
   </form>
 </article>
 
-{{ comments post.comments}}
+{{> comments post.comments}}
 
 <script src="/js/edit-post.js"></script>
 <script src="/js/delete-post.js"></script>
+<script src="/js/comment.js"></script>

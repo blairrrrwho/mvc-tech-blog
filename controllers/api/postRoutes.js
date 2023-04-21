@@ -3,7 +3,7 @@ const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Get post by id ================================================
-router.get('/post/:id', withAuth, async(req, res) => {
+router.get('/:id', withAuth, async(req, res) => {
   console.log('made it to get post by id');
   try {
     const idPost = await Post.findByPk({

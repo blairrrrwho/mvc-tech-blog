@@ -69,12 +69,9 @@ router.get('/post/:id', async (req, res) => {
     });
     const post = postData.get({ plain: true });
     console.log(postData);
-    // const com = await postData.comments.map((comm) =>
-    //   comm.get({ plain: true })
     const comment = postData.comments.map((test) =>
     test.get({ plain: true })
     );
-    // console.log(com);
     res.render('single-post', {
       post,
       comment,
@@ -103,7 +100,7 @@ router.get('/user/:id', async (req, res) => {
     }
     const user = userData.get({ plain: true });
     res.render('userProfiles', {
-      ...user,
+      user,
       logged_in: req.session.logged_in,
     });
   } catch (err) {

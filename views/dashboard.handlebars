@@ -33,7 +33,7 @@
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger delbtn post-list" data-id="{{post.id}}">DELETE</button>
-        <button class="btn btn-sm btn-warning edit-post-form">Edit</button>
+        <button class="btn btn-sm btn-warning edit-post-form" id="edit" edit-id="{{post.id}}">Edit</button>
       </div>
     </div>
     {{/each}}
@@ -53,7 +53,7 @@
 {{/each}}
 
 {{else}}
-<h6 class="pb-4 has-text-centered is-italic">you do not currently have any posts</h6>
+<h6 class="pb-4 has-text-centered is-italic">You do not currently have any posts -_- </h6>
 
 {{/if}}
 

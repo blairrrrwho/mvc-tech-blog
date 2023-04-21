@@ -31,13 +31,14 @@ document.querySelector('.new-comment-form')
 
 
 
-  
-// const newCommentBtn = document.getElementById("commentBtn");
+//   console.log("ready to post a comment to a post");
 
-// newCommentBtn.addEventListener("submit", async (e) => {
+// const newCommentBtn = document.getElementById("comment");
+
+// newCommentBtn.addEventListener("click", async (e) => {
 //   e.preventDefault();
 
-//   const comment_body = document.getElementById("comment-body").value.trim();
+//   const comment_body = document.getElementById("comment-name").value;
 
 //   console.log(comment_body);
 
@@ -46,16 +47,19 @@ document.querySelector('.new-comment-form')
 //   const post_id = data[data.length - 1];
 //   const user_id = data[data.length - 1];
 
-//   const response = await fetch("/api/comment", {
+//   console.log(post_id);
+
+//   await fetch("/api/comment", {
 //     method: "POST",
-//     body: JSON.stringify({
-//       comment_body,
-//     }),
 //     headers: {
 //       Accept: "application/json, text/plain, */*",
 //       "Content-Type": "application/json",
 //     },
-
+//     body: JSON.stringify({
+//       comment_body: comment_body,
+//       post_id: post_id,
+//       // user_id: user_id,
+//     }),
 //   }).then((res) => {
 //     console.log(res);
 //     if (res.status == 200) {

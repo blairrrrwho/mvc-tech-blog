@@ -1,4 +1,4 @@
-const { Model, DataTypes, STRING } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
@@ -8,12 +8,12 @@ class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
-  // verifyPass(pass) {
-  //   return bcrypt.compareSync(pass, this.password);
-  // }
-  // returnUserName() {
-  //   return this.username;
-  // }
+  verifyPass(pass) {
+    return bcrypt.compareSync(pass, this.password);
+  }
+  returnUserName() {
+    return this.username;
+  }
 }
 
 // Defines a table called User
