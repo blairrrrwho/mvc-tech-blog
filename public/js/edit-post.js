@@ -1,38 +1,56 @@
 console.log("ready to edit a post");
 
-async function editFormHandler(event) {
-  event.preventDefault();
+// async function editFormHandler(event) {
+//   event.preventDefault();
 
-  const title = document.querySelector('input[name="post-title"]').value;
-  const post_body = document.querySelector('input[name="post-content"]').value;
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
+//   const title = document.querySelector('input[name="post-title"]').value;
+//   const post_body = document.querySelector('input[name="post-content"]').value;
+//   const id = window.location.toString().split('/')[
+//     window.location.toString().split('/').length - 1
+//   ];
 
-  const response = await fetch(`/api/post/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      title,
-      post_body,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+//   const response = await fetch(`/api/post/${id}`, {
+//     method: 'PUT',
+//     body: JSON.stringify({
+//       title,
+//       post_body,
+//     }),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
 
-  if (response.ok) {
-    document.location.replace('/dashboard/');
-  } else {
-    alert(response.statusText);
-  }
-}
+//   if (response.ok) {
+//     document.location.replace('/edit-post');
+//   } else {
+//     alert(response.statusText);
+//   }
+// }
 
-document
-  .querySelector('.edit-post-form')
-  .addEventListener('submit', editFormHandler);
+// document
+//   .querySelector('.edit-post-form')
+//   .addEventListener('submit', editFormHandler);
 
-
-
+  const editButtonHandler = async (event) => {
+    if (event.target.hasAttribute("edit-id")) {
+      const id = event.target.getAttribute("edit-id");
+  
+      const response = await fetch(`/dashboard/edit/${id}`, {
+        method: "GET",
+      });
+  
+      if (response.ok) {
+        document.location.replace("/edit-post");
+      } else {
+        alert("Failed to edit post");
+      }
+    }
+  };
+  
+  document
+    .querySelector(".edit-post-form")
+    .addEventListener("click", editButtonHandler);
+  
 
 // const title = document.querySelector('#post-title').value.trim();
 // const post_body = document.querySelector('post-content').value.trim();

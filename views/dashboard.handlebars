@@ -19,57 +19,13 @@
     <a href="/dashboard/edit" class="button is-link is-pulled-right" id="edit">Edit Post
     </a>
   </li>
-  <li>
-    <a href="/dashboard/delete" class="button is-danger is-pulled-right" id="delete">DELETE Post
-    </a>
-  </li>
 </ul>
 
 
-<div>
-  {{#if post.posts.length}}
-  <div class="col-md-6 post-list">
-    <h3>Current Posts:</h3>
-
-    {{#each posts as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger delbtn post-list" data-id="{{post.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
-
-
-
-
-
-
-{{#if posts.length}}
-
-{{#each posts as |post|}}
-
-
-<a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">Edit Post</button></a>
-</div>
-{{/each}}
-
-
-{{else}}
-<h6 class="pb-4 has-text-centered is-italic">You do not currently have any posts -_- </h6>
-
-{{/if}}
-
+{{!-- DELETE post --}}
 <div>
   {{#if posts.length}}
   <div class="col-md-6 post-list">
-    <h3>Current Posts:</h3>
-
     {{#each posts as |post|}}
     <div class="row mb-2">
       <div class="col-md-8">
@@ -77,9 +33,32 @@
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger delbtn post-list" data-id="{{post.id}}">DELETE</button>
+        <button class="btn btn-sm btn-warning edit-post-form">Edit</button>
       </div>
     </div>
     {{/each}}
   </div>
   {{/if}}
 </div>
+
+
+{{#if posts.length}}
+</div>
+
+{{#each posts as |post|}}
+{{> post-info post}}
+
+<a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">edit post</button></a>
+</div>
+{{/each}}
+
+{{else}}
+<h6 class="pb-4 has-text-centered is-italic">you do not currently have any posts</h6>
+
+{{/if}}
+
+
+
+<script src='/js/delete-post.js'></script>
+
+<script src='/js/edit-post.js'></script>
