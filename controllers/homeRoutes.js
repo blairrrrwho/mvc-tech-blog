@@ -86,19 +86,19 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // Login / directs to login page ==========================================================================
-// router.get('/login', (req, res) => {
-//   try {
-//     res.render('login', {});
-//     // If the user is already logged in, redirect the request to another route
-//     if (req.session.logged_in) {
-//       res.redirect('dashboard');
-//       return;
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/login', (req, res) => {
+  try {
+    res.render('login', {});
+    // If the user is already logged in, redirect the request to another route
+    if (req.session.logged_in) {
+      res.redirect('dashboard');
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 router.get("/user", async (req, res)=> {
   try {

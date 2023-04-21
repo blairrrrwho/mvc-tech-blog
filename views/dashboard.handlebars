@@ -1,3 +1,9 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{username}}!</h2>
+  </div>
+</div>
+
 <div class="mb-5 pt-3">
   <a href="/dashboard/create"><button id="create-post" class="button is-primary is-pulled-right">Create
       Post</button></a>
@@ -37,3 +43,24 @@
 <h6 class="pb-4 has-text-centered is-italic">you do not currently have any posts</h6>
 
 {{/if}}
+
+<div>
+  {{#if posts.length}}
+  <div class="col-md-6 post-list">
+    <h3>Current Posts:</h3>
+
+    {{#each posts as |post|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger delbtn post-list" data-id="{{post.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>
