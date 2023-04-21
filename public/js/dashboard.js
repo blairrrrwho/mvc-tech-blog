@@ -1,3 +1,5 @@
+console.log("made it to the user dashboar");
+
 const newFormHandler = async (event) => {
     event.preventDefault();
   

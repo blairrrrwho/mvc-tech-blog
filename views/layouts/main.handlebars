@@ -19,37 +19,42 @@
       {{#if logged_in}}
       <ul>
         <li>
-          <a href="/" class="navbar-item is-hoverable pt-1" id="main-title">
+          <a href="/" class="navbar-item is-hoverable pt-1 button is-warning is-focused" id="main-title">
             Homepage</a>
-        </li>
+        </li> <br>
         <li>
-          <a href="/dashboard" class="navbar-item is-hoverable pt-1">
+          <a href="/dashboard" class="navbar-item is-hoverable pt-1 button is-link is-outlined" id="dashboard">
             Dashboard</a>
         </li>
         <li>
-          <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 mr-4">
+          <a href="/dashboard/create/" class="navbar-item is-hoverable pt-1 button is-primary is-outlined" id="create">
             Create Post</a>
         </li>
         <li>
-          <a href='/profile'>Profile</a>
+          <a href='/profile' class="navbar-item is-hoverable pt-1 button is-info is-outlined" id="profile">
+            Profile</a>
         </li>
         <li>
-          <button class="navbar-item is-hoverable pt-1 button is-success is-outlined" id="logout">
-            Leave</button>
+          <a href='/logout' class="navbar-item is-hoverable pt-1 button is-danger is-outlined" id="logout">
+            Leave</a>
         </li>
+        {{!-- <li>
+          <button class="navbar-item is-hoverable pt-1 button is-danger is-outlined" id="logout">
+            Leave</button>
+        </li> --}}
       </ul>
       {{else}}
       <ul>
         <li>
-          <a href="/" class="navbar-item is-hoverable pt-1 button is-warning">
-            Homepage</a><br>
+          <a href="/" class="navbar-item is-hoverable pt-1 button is-warning is-focused" id="main-title">
+            Homepage</a>
+        </li> <br>
+        <li>
+          <a href="/login" class="navbar-item is-hoverable pt-1 button is-link is-outlined" id="login">
+            Log In</a>
         </li>
         <li>
-          <a href="/login" class="navbar-item is-hoverable pt-1 button is-link is-outlined">
-            Log In</a><br>
-        </li>
-        <li>
-          <a href="/signup" class="navbar-item is-hoverable pt-1 button is-success is-outlined">
+          <a href="/signup" class="navbar-item is-hoverable pt-1 button is-success is-outlined" id="signup">
             Sign Up</a>
         </li>
       </ul>
@@ -84,8 +89,6 @@
 {{#if logged_in}}
 <script src='/js/logout.js'></script> 
 {{!--
-<script src="/js/create-post.js"></script>
-<script src="/js/update-post.js"></script>
 <script src="/js/edit-post.js"></script>
 <script src="/js/delete-post.js"></script>
 <script src="/js/comment.js"></script> --}}

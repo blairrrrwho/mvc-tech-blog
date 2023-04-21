@@ -1,3 +1,5 @@
+console.log("ready to delete a post");
+
 // async function deleteFormHandler(event) {
 //   event.preventDefault();
 
@@ -26,6 +28,7 @@
 // document
 //   .querySelector('.delete-post-btn')
 //   .addEventListener('click', deleteFormHandler);
+
 
 const newFormHandler = async (event) => {
   event.preventDefault();

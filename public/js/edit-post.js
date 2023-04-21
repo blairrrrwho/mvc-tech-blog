@@ -1,4 +1,4 @@
-console.log("ready to edit my post");
+console.log("ready to edit a post");
 
 async function editFormHandler(event) {
   event.preventDefault();

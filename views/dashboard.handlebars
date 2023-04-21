@@ -1,46 +1,67 @@
 <div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{username}}!</h2>
+  <div class="col-auto has-text-centered pb-4">
+    <h1>Welcome, {{user.username}}!</h1><br>
   </div>
 </div>
 
 <div class="mb-5 pt-3">
-  <a href="/dashboard/create"><button id="create-post" class="button is-primary is-pulled-right">Create
-      Post</button></a>
-
-  <h2 class="title pb-4">Dashboard - Your Posts!</h2>
-  <hr>
-  {{#if posts.length}}
-
-  {{#each posts as |post|}}
-  {{> post-info post}}
+  <h2 class="title">This is your dashboard</h2>
+  <h3>A safe space to add, edit, and delete your posts.</h3>
+  <hr> <br><br>
 </div>
 
+<ul>
+  <li>
+    <a href="/dashboard/create" class="button is-primary is-pulled-right" id="create">New Post
+    </a>
+  </li>
+  <li>
+    <a href="/dashboard/edit" class="button is-link is-pulled-right" id="edit">Edit Post
+    </a>
+  </li>
+  <li>
+    <a href="/dashboard/delete" class="button is-danger is-pulled-right" id="delete">DELETE Post
+    </a>
+  </li>
+</ul>
+
+
+<div>
+  {{#if post.posts.length}}
+  <div class="col-md-6 post-list">
+    <h3>Current Posts:</h3>
+
+    {{#each posts as |post|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger delbtn post-list" data-id="{{post.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+
+
+
+
+
+{{#if posts.length}}
+
+{{#each posts as |post|}}
 
 
 <a href="/dashboard/edit/{{post.id}}"><button class="button mb-5 ml-5 is-warning">Edit Post</button></a>
 </div>
 {{/each}}
-{{#if posts.length}}
-<div class="col-md-6 post-list">
-  <h3>Current Posts:</h3>
 
-  {{#each posts as |post|}}
-  <div class="row mb-2">
-    <div class="col-md-8">
-      <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-sm btn-danger delbtn post-list" data-id="{{post.id}}">DELETE</button>
-    </div>
-  </div>
-  {{/each}}
-</div>
-{{/if}}
-</div>
 
 {{else}}
-<h6 class="pb-4 has-text-centered is-italic">you do not currently have any posts</h6>
+<h6 class="pb-4 has-text-centered is-italic">You do not currently have any posts -_- </h6>
 
 {{/if}}
 
@@ -62,5 +83,3 @@
   </div>
   {{/if}}
 </div>
-
-<script src="./js/profile.js"></script>
