@@ -94,10 +94,9 @@ router.get('/:id', async (req, res) => {
 
 
 // Sign Up ====================================================================
-// PUT /api/users/1
 router.post('/signup', async (req, res) => {
   try {
-    const newUser = User.create({
+    const newUser = await User.create({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
@@ -128,6 +127,7 @@ router.post('/', async (req, res) => {
       req.session.github = userData.github;
       req.session.logged_in = true;
       res.json({ user: userData, message: "You are now logged in!" });
+      
     })
     res.status(200).json(userData)
   } catch (err) {
