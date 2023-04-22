@@ -76,21 +76,21 @@ router.get('/:id', async (req, res) => {
 
 
 // GET /api/users/profile/1
-// router.get('/profile/:id', async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.params.id);
-//     if (!userData) {
-//       res.status(404).json({ message: 'No user was found with this ID!' });
-//     }
-//     const user = userData.get({ plain: true });
-//     res.render('userProfiles', {
-//       ...user,
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/profile/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id);
+    if (!userData) {
+      res.status(404).json({ message: 'No user was found with this ID!' });
+    }
+    const user = userData.get({ plain: true });
+    res.render('userProfiles', {
+      ...user,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 // Sign Up ====================================================================
@@ -127,7 +127,7 @@ router.post('/', async (req, res) => {
       req.session.github = userData.github;
       req.session.logged_in = true;
       res.json({ user: userData, message: "You are now logged in!" });
-      
+
     })
     res.status(200).json(userData)
   } catch (err) {

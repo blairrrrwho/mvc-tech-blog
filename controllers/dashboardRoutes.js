@@ -74,13 +74,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: [
-            'id',
-            'comment_body',
-            'post_id',
-            'user_id',
-            'created_at',
-          ],
+          attributes: ['id', 'comment_body', 'post_id', 'user_id', 'created_at'],
           include: {
             model: User,
             attributes: ['username', 'github'],
@@ -97,7 +91,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       return;
     }
     // serialize the data
-    const post = editPost.get({ plain: true });
+    const post = editPost.map((post) => post.get({ plain: true }));
     res.render('edit-post', {
       post,
       logged_in: true,
@@ -120,13 +114,7 @@ router.get('/create', withAuth, async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: [
-            'id',
-            'comment_body',
-            'post_id',
-            'user_id',
-            'created_at',
-          ],
+          attributes: ['id', 'comment_body', 'post_id', 'user_id', 'created_at'],
           include: {
             model: User,
             attributes: ['username', 'github'],
