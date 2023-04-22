@@ -60,34 +60,15 @@ router.get('/', withAuth, async (req, res) => {
 // Editing a post / rendering edit-post page ======================================================
 router.get('/edit/:id', withAuth, async (req, res) => {
   try {
-    const editPost = await Post.findByPk({
-      where: {
-        id: req.params.id,
-      },
-      attributes: ['id', 'post_body', 'title', 'created_at'],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'comment_body', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username', 'github'],
-          },
-        },
-        {
-          model: User,
-          attributes: ['username', 'github'],
-        },
-      ],
-    });
+    const editPost = await Post.findByPk(req.params.id);
     if (!editPost) {
-      res.status(404).json({ message: 'No post found with this ID.' });
+      res.status(404).json({message: "No post found with this ID"});
       return;
     }
     // serialize the data
-    const post = editPost.map((post) => post.get({ plain: true }));
+    console.log('just hit route', editPost);
     res.render('edit-post', {
-      post,
+      editPost,
       logged_in: true,
     });
   } catch (err) {

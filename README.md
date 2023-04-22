@@ -30,10 +30,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 
 ## Deployment
-Live URL: <a href="deployed link">Deployment Link</a>
+Live URL: <a href="https://another-mvc-tech-blog.herokuapp.com/">Another Tech Blog</a>
 
-<!-- in the parentheses is just the relative path to the screenshot-->
-![alt text](assets/images/screenshot.png)
+![Screenshot](./assets/images/screenshot.png)
 
 
 ## Features
@@ -82,4 +81,4 @@ If you created an application or package and would like other developers to cont
   <li><strong><a href="https://github.com/blairrrrwho" target="_blank">Blair Millet</a>:</strong> Full-Stack Developer</li>  
 
 - - - - 
-© 2023 Another Bad Music Review, Inc. All Rights Reserved.
+© 2023 Another Tech Blog, Inc. All Rights Reserved.
