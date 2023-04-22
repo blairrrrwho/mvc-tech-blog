@@ -1,53 +1,57 @@
 const { User } = require('../models');
 
+const bcrypt = require('bcrypt');
+const hash = bcrypt.hashSync('password', 10);
+// passwords for seed data will now be "password"
+
 const userData = [
   {
     username: 'blairrrr_who',
     github: 'blairrrrwho',
     email: 'blair10324@gmail.com',
-    password: 'pw1234pw1',
+    password: hash,
     bio: 'My name is blair!'
   },
   {
     username: 'christina_h',
     github: 'chrish',
     email: 'christina@gmail.com',
-    password: 'pw1234pw2',
+    password: hash,
     bio: 'My name is Christina!'
   },
   {
     username: 'lacey_a',
     github: 'laceya',
     email: 'lacey@gmail.com',
-    password: 'pw1234pw3',
+    password: hash,
     bio: 'My name is Lacey!'
   },
   {
     username: 'terry_l',
     github: 'terryl',
     email: 'terry@gmail.com',
-    password: 'pw1234pw4',
+    password: hash,
     bio: 'My name is Terry!'
   },
   {
     username: 'ben_s',
     github: 'ben456',
     email: 'ben@gmail.com',
-    password: 'pw1234pw5',
+    password: hash,
     bio: 'My name is Ben!'
   },
   {
     username: 'juno_m',
     github: 'mickie',
     email: 'juno@gmail.com',
-    password: 'pw1234pw6',
+    password: hash,
     bio: 'My name is Juno!'
   },
   {
     username: 'bruce_m',
     github: 'pickles',
     email: 'bruce@gmail.com',
-    password: 'pw1234pw7',
+    password: hash,
     bio: 'My name is Bruce!'
   },
 ];
