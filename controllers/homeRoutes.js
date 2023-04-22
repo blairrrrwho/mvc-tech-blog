@@ -109,7 +109,6 @@ router.get('/users/:id', async (req, res) => {
 });
 
 
-
 // Login / directs to login page ==========================================================================
 // router.get('/login', (req, res) => {
 //   try {
