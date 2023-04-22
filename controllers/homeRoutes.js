@@ -83,7 +83,7 @@ router.get('/post/:id', async (req, res) => {
 });
 
 
-router.get("/user", async (req, res)=> {
+router.get("/users", async (req, res)=> {
   try {
     const data = await User.findAll()
     res.status(200).json(data)
@@ -92,7 +92,7 @@ router.get("/user", async (req, res)=> {
   }
 })
 
-router.get('/user/:id', async (req, res) => {
+router.get('/users/:id', async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id);
     if (!userData) {
