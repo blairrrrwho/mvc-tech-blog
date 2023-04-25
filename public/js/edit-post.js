@@ -25,5 +25,5 @@ const editButtonHandler = async (event) => {
 
 document
   .querySelector("#saveBtn")
-  .addEventListener("submit", editButtonHandler);
+  .addEventListener("click", editButtonHandler);
 
