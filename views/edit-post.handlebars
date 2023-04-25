@@ -15,9 +15,9 @@
 
     </div>
     <div class="is-pulled-right">
-       Created by you on {{format_date post.created_at}} |
-       Updated by you on {{format_date updated_at}} |
-      <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "Comment" post.comments.length}}</a>
+       {{!-- Created by you on {{format_date post.created_at}} |
+       Updated by you on {{format_date updated_at}} | --}}
+      {{!-- <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "Comment" post.comments.length}}</a> --}}
     </div>
     <button type="submit" class="button is-success" id="saveBtn">Save Post</button>
     {{!-- <a href="url_to_delete" onclick="return confirm('Are you sure you want to delete this item?');">

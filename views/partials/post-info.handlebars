@@ -1,31 +1,41 @@
 <div class="card mb-6">
-    <header class="card-header card-header-title has-background-grey-lighter">
+  <header class="card-header card-header-title has-background-grey-lighter">
 
-        <div class="column">
-            <h5 class=" has-text-primary-light">
-            <a href="/post/{{id}}" class="has-text-black is-capitalized is-pulled-left post-id">
-                {{title}} </a>
-            </h5>
-        </div>
-
-        <div class="column">
-            <span class=""> </span>
-        </div>
-
-    </header>
-
-    <div class="card-content">
-        <div class="content has-text-justified">
-            {{post_body}}
-        </div>
-        <div class="is-pulled-right">
-            <a class="snob" href="/user/{{id}}">{{user.username}}</a> -
-            <a href="https://github.com/{{user.github}}"><i class="fab fa-github"></i></a> -
-             Created on: {{format_time created_at}} - 
-             {{!-- Updated on: {{format_time updatedAt}} | --}}
-            <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment"
-                comments.length}}</a>
-        </div>
-
+    <div class="column">
+      <h5 class="has-text-primary-light">
+        <a
+          href="/post/{{id}}"
+          class="has-text-black is-capitalized is-pulled-left post-id"
+        >
+          {{title}}
+        </a>
+      </h5>
     </div>
+
+    <div class="column">
+      <span class=""> </span>
+    </div>
+
+  </header>
+
+  <div class="card-content">
+    <div class="content has-text-justified">
+      {{post_body}}
+    </div>
+    <div class="is-pulled-right">
+      <a class="snob" href="/user/{{id}}">{{user.username}}</a>
+      -
+      <a href="https://github.com/{{user.github}}"><i
+          class="fab fa-github"
+        ></i></a>
+      - Created on:
+      {{format_time created_at}}
+      - Updated on:
+      {{format_date updated_at}}
+      |
+      <a href="/post/{{id}}">{{comments.length}}
+        {{format_plural "comment" comments.length}}</a>
+    </div>
+
+  </div>
 </div>

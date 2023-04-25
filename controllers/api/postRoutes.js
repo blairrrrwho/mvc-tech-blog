@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     // where: {
     //   id: req.params.id,
     // },
-    attributes: ['id', 'title', 'created_at', 'post_body'],
+    attributes: ['id', 'title', 'created_at', 'post_body', 'updated_at',],
     include: [
       // include the Comment model here:
       {

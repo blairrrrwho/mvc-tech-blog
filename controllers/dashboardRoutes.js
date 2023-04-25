@@ -12,8 +12,8 @@ router.get('/', withAuth, async (req, res) => {
         // ID from the session
         user_id: req.session.user_id,
       },
-      attributes: ['id', 'title', 'created_at', 'post_body', 'user_id'],
-      // order: [['date', 'DESC']],
+      attributes: ['id', 'title', 'created_at', 'post_body', 'updated_at', 'user_id'],
+      order: [['date', 'DESC']],
       include: [
         {
           model: Comment,
@@ -67,7 +67,7 @@ router.get('/create', withAuth, async (req, res) => {
         // use the ID from the session
         user_id: req.session.user_id,
       },
-      attributes: ['id', 'title', 'created_at', 'post_body', 'user_id'],
+      attributes: ['id', 'title', 'created_at', 'post_body', 'updated_at', 'user_id'],
       include: [
         {
           model: Comment,

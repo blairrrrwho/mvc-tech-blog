@@ -68,7 +68,7 @@
       <a href="/">Homepage</a>
       {{#if logged_in}} |
       <a href="/dashboard/">Dashboard</a> |
-      <a href="/dashboard/create/">Create Post</a> | <a href="/logout">Leave</a>
+      <a href="/dashboard/create/">Create Post</a>
       {{else}}
       | <a href="/login">Log In</a> | <a href="/signup">Sign Up</a>
       {{/if}}
@@ -83,14 +83,8 @@
 
 
 {{#if logged_in}}
-<script src='/js/logout.js'></script> 
+<script src='/js/logout.js'></script>
 {{/if}}
-
-{{!-- DON'T PUT THESE HERE -______- ----> will throw error for add event listener bc it's trying to look for the
-"submit" log in / sign up buttons
-<script src="/js/login.js"></script>
-<script src="/js/signup.js"></script>
---}}
 
 </body>
 

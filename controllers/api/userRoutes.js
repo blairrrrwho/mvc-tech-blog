@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
       include: [
         {
           model: Post,
-          attributes: ['id', 'title', 'post_body', 'created_at', 'user_id'],
+          attributes: ['id', 'title', 'post_body', 'created_at', 'updated_at', 'user_id'],
         },
         {
           model: Comment,
@@ -53,43 +53,6 @@ router.get('/:id', async (req, res) => {
     console.log(err)
     console.log("userRoutes")
     res.status(500).json(err)
-  }
-});
-
-
-// router.get('/:id', async(req, res) => {
-//   try {
-//     const userData = await User.findByPk({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [{model: Comment}]
-//     })
-//     if(!userData) {
-//       res.status(404).json({message: "No user was found with this ID!"})
-//     }
-//     res.status(200).json(userData)
-//   } catch(err) {
-//     console.log("userRoutes")
-//     res.status(500).json(err)
-//   }
-// })
-
-
-// GET /api/users/1
-router.get('/:id', async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.params.id);
-    if (!userData) {
-      res.status(404).json({ message: 'No user was found with this ID!' });
-    }
-    const user = userData.get({ plain: true });
-    res.render('userProfiles', {
-      ...user,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
   }
 });
 
