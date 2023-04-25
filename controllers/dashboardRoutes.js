@@ -13,7 +13,6 @@ router.get('/', withAuth, async (req, res) => {
         user_id: req.session.user_id,
       },
       attributes: ['id', 'title', 'created_at', 'post_body', 'updated_at', 'user_id'],
-      // order: [['date', 'DESC']],
       include: [
         {
           model: Comment,
