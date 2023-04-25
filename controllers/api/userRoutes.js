@@ -3,7 +3,7 @@ const { User, Post, Comment } = require('../../models');
 const sequelize = require("../../config/connection");
 const withAuth = require('../../utils/auth');
 
-
+// Get all users
 // GET /api/users
 router.get('/', async (req, res) => {
   // Access our User model and run .findAll() method
@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get specific user
 // GET /api/users/1
 router.get('/:id', async (req, res) => {
   try {
@@ -93,7 +94,7 @@ router.get('/profile/:id', async (req, res) => {
 });
 
 
-// Sign Up ====================================================================
+// Sign Up / Create user ====================================================================
 router.post('/signup', async (req, res) => {
   try {
     const newUser = await User.create({
@@ -115,6 +116,7 @@ router.post('/signup', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 // Create User
 // POST /api/users
 router.post('/', async (req, res) => {

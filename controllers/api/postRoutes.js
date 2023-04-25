@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Get post by id ================================================
+// Get single post by id ================================================
 router.get('/:id', withAuth, async(req, res) => {
   console.log('made it to get post by id');
   try {
@@ -114,7 +114,7 @@ router.put('/:id', withAuth, async (req, res) => {
     console.log(req.body.post_id);
     const updatePost = await Post.update(req.body, {
       where: {
-        id: req.body.post_id,
+        id: req.params.id,
       },
     });
     if (!postData) {
@@ -124,7 +124,7 @@ router.put('/:id', withAuth, async (req, res) => {
     res.status(200).json(updatePost);
   } catch (err) {
     console.log(err);
-    res.status(200).json(err);
+    res.status(400).json(err);
   }
 });
 
