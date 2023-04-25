@@ -75,30 +75,51 @@ router.get('/post/:id', async (req, res) => {
 });
 
 
-// router.get('/users', async (req, res)=> {
-//   try {
-//     const data = await User.findAll()
-//     res.status(200).json(data)
-//   } catch(err) {
-//     res.status(500).json(err)
-//   }
-// })
+router.get('/user', async (req, res)=> {
+  try {
+    const data = await User.findAll()
+    res.status(200).json(data)
+  } catch(err) {
+    res.status(500).json(err)
+  }
+})
 
-// router.get('/users/:id', async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.params.id);
-//     if (!userData) {
-//       res.status(404).json({ message: 'No user was found with this ID!' });
-//     }
-//     const user = userData.get({ plain: true });
-//     res.render('userProfiles', {
-//       user,
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/user/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id);
+    if (!userData) {
+      res.status(404).json({ message: 'No user was found with this ID!' });
+    }
+    const postData = await Post.findByPk(req.params.id, {
+      attributes: ['id', 'title', 'created_at', 'post_body'],
+      include: [
+        {
+          model: User,
+          attributes: ['username', 'github'],
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_body', 'post_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: ['username', 'github']
+          }
+        },
+      ],
+    });
+    const post = postData.get({ plain: true });
+    console.log(postData);
+    const user = userData.get({ plain: true });
+    res.render('userProfiles', {
+      ...user,
+      user,
+      post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

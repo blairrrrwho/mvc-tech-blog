@@ -1,12 +1,25 @@
 <div class="row">
   <div class="col-auto">
     <h1>User Profile: {{username}}</h1>
-    <h2>{{User.username}}</h2>
+    {{!-- <h2>{{username}}</h2> --}}
   </div>
   <div >
-     <p class="has-text-centered">{{user.bio}}</p>
+     <p class="has-text-centered">{{bio}}</p>
+
   </div>
 </div>
  
 
 
+  {{#if posts.length}}
+  <div class="col-md-6 post-list">
+    <h3>Current Post:</h3>
+    {{#each posts as |post|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}

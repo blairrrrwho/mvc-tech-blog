@@ -76,8 +76,8 @@ router.get('/:id', async (req, res) => {
 // })
 
 
-// GET /api/users/profile/1
-router.get('/profile/:id', async (req, res) => {
+// GET /api/users/1
+router.get('/:id', async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id);
     if (!userData) {
