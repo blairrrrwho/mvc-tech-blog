@@ -20,14 +20,16 @@ Model-View-Controller Tech Blog: A MySQL database and CMS-style blog that follow
 
 
 ## Installation
-No installation required -- this is a web-based application
-
+To install simply clone the repo down to your local machine. In the CLI in the relative directory, run 'npm i' to get all dependancies required for sucessful download of packages. Download mMSQL, then create db by using 'SOURCE db/schema.sql' in mySQL shell. Ensure that you have updated the /config/connection.js to use your mySQL with sequelize. Finally run 'npm run seed' to seed the db with default data.  
+Add the .env file to the root of the project and change the following: 
+- DB_NAME='tech_blog_db'
+- DB_USER='root'
+- DB_PASSWORD='YOURPASSWORD'
 
 ## Usage (Instructions/How-To Use)
-Provide instructions and examples for use. Include screenshots as needed.
+To use the package as a consumer, simply visit the deployed link and create an account. After signing up, You can create blog posts by clicking the create button on the home page. Comment by clicking an existing post, and below that you will have the option to make a comment. You can visit the dashboard to view your own posts. Just click Dashboard in the navbar. Here, you can create, edit, or delete your posts. 
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
-
+To use the package as a Developer, after following the installation steps above, at the root of the project directory run command 'npm start' or 'npm run dev' in your CLI, then click the link in the CLI to view site from localhost.
 
 ## Deployment
 Live URL: <a href="https://another-mvc-tech-blog.herokuapp.com/">Another Tech Blog</a>
@@ -36,15 +38,17 @@ Live URL: <a href="https://another-mvc-tech-blog.herokuapp.com/">Another Tech Bl
 
 
 ## Features
-If your project has a lot of features, list them here.
-
+Lots of npm packages are featured!  
+Some of them include:
+- bcrypt
+- nodemon
+- bulma
 
 ## Technologies
-JavaScript, HTML, CSS, Node.js, Express.js, MySQL, Java, C, C#, C++, Python, Other, N/A
+JavaScript, HTML, CSS, Node.js, Express.js, MySQL, Handlebars
 
 
 ## License
-This project is licensed under the MIT license. For more information about this license and what it entails visit: https://opensource.org/licenses/MIT
 This project is licensed under the MIT license. For more information about this license and what it entails, visit the MIT website <a href="https://opensource.org/licenses/MIT">here</a>  
 
 
@@ -57,21 +61,16 @@ Preview:
     THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-
 ## Tests
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+Endpoints were tested with Insomnia, If you should find any issues, see above on contibuting guidlines, or submit a issue with a detailed explanation on how to recreate the bug.
 
 
 ## Credits
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+Terry Lequernaque!
 
 
 ## How to Contribute
-If you created an application or package and would like other developers to contribute to it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
+How to contribute? fork the repo and clone down to your local machine. Once you have the latest version of the repo you can add or make changes then submit a pull request for your changes. Please use best practices as well as proper naming conventions and comments depicting what the code segements function is. Finally in the body of your pull request please explain why these changes you were necissary and if it is a bug what steps can be completed to reproduce this bug. If these guidelines are not met, pull requests will not be reviewed or accepted.
 
 
 ## Contact / Questions
