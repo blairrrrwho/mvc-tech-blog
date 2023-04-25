@@ -90,30 +90,10 @@ router.get('/user/:id', async (req, res) => {
     if (!userData) {
       res.status(404).json({ message: 'No user was found with this ID!' });
     }
-    const postData = await Post.findByPk(req.params.id, {
-      attributes: ['id', 'title', 'created_at', 'post_body'],
-      include: [
-        {
-          model: User,
-          attributes: ['username', 'github'],
-        },
-        {
-          model: Comment,
-          attributes: ['id', 'comment_body', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username', 'github']
-          }
-        },
-      ],
-    });
-    const post = postData.get({ plain: true });
-    console.log(postData);
     const user = userData.get({ plain: true });
     res.render('userProfiles', {
       ...user,
       user,
-      post,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
