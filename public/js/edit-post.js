@@ -6,13 +6,16 @@ const editButtonHandler = async (event) => {
 
     const title = document.querySelector('input[name="post-title"]').value.trim();
     const post_body = document.querySelector('input[name="post-content"]').value.trim();
-  
+    // const edit_id = window.location.href.split("/").pop();
+  //   const post_id = window.location.toString().split('/')[
+  //     window.location.toString().split('/').length - 1
+  // ];
 
-    const response = await fetch(`/api/post/${id}`, {
+    const response = await fetch(`/api/post/${post_id}`, {
       method: "PUT",
       body: JSON.stringify({
         title,
-        post_body
+        post_body,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -28,5 +31,6 @@ const editButtonHandler = async (event) => {
 };
 
 document
-  .querySelector(".edit-post-form")
+  .querySelector("#saveBtn")
   .addEventListener("submit", editButtonHandler);
+

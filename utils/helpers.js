@@ -3,9 +3,11 @@ module.exports = {
     return date.toLocaleDateString();
   },
   format_date: (date) => {
-    return `${new Date(date).getMonth() + 1}/
-      ${new Date(date).getDate()}/
-      ${new Date(date).getFullYear()}`;
+    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
+  },
+  format_time: (date) => {
+    return `${new Date(date).toLocaleString()}`;
+
   },
   format_plural: (word, amount) => {
     if (amount !== 1) {
@@ -13,10 +15,6 @@ module.exports = {
     }
     return word;
   },
-  // format_date: (date) => {
-  //   // Format date as MM/DD/YYYY
-  //   return date.toLocaleDateString();
-  // },
   format_amount: (amount) => {
     // format large numbers with commas
     return parseInt(amount).toLocaleString();

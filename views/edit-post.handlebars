@@ -8,22 +8,29 @@
         placeholder = "post title edits" type="text" value="{{post.title}}" />
     </div>
     <div>
-        <label for="post-content">Post Content:</label>
+      <label for="post-content">Post Content:</label>
       <input class="textarea post-content" name="post-content" 
         placeholder = "Post content edits" type="text" value="{{post.post_body}}" />
+      <input type="hidden" name="edit-id" value="{{_id}}" />
+
     </div>
     <div class="is-pulled-right">
-       Created by you on {{format_date post.created_at}}
-      |
-      <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
+       Created by you on {{format_date post.created_at}} |
+       Updated by you on {{format_date updated_at}} |
+      <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "Comment" post.comments.length}}</a>
     </div>
-    <button type="submit" class="button is-success">Save Post</button>
+    <button type="submit" class="button is-success" id="saveBtn">Save Post</button>
+    {{!-- <a href="url_to_delete" onclick="return confirm('Are you sure you want to delete this item?');">
+      <button class="button is-danger delete-post-btn delbtn post-list" data-id="{{post.id}}">Delete Post</button>
+    </a>
     <button type="submit" class="button is-danger delete-post-btn">Delete Post</button>
-  </form>
+  </form> --}}
 </article>
 
-{{> comments post.comments}}
+{{!-- {{> comments post.comments}} --}}
 
 <script src="/js/edit-post.js"></script>
-<script src="/js/delete-post.js"></script>
-<script src="/js/comment.js"></script>
+{{!-- <script src="/js/delete-post.js"></script> --}}
+{{!-- <script src="/js/deleteonedit.js"></script> --}}
+{{!-- <script src="/js/comment.js"></script> --}}
+

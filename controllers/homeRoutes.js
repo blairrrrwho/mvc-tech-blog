@@ -4,7 +4,7 @@ const sequelize = require("../config/connection")
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
-// Homepage / directs to get all posts =================================================================================
+// Homepage / GET: all posts =================================================================================
 // http://localhost:3001/
 router.get('/', async (req, res) => {
   console.log(req.session);
@@ -12,25 +12,19 @@ router.get('/', async (req, res) => {
     // Get all posts and JOIN with user data
     const postData = await Post.findAll({
       // order: [['date', 'DESC']],
-      attributes: ["id", "title", "created_at", "post_body"],
+      attributes: ['id', 'title', 'created_at', 'updated_at', 'post_body'],
       include: [
         {
           model: Comment,
-          attributes: [
-            "id",
-            "comment_body",
-            "post_id",
-            "user_id",
-            "created_at",
-          ],
+          attributes: ['id', 'comment_body', 'post_id', 'user_id', 'created_at'],
           include: {
             model: User,
-            attributes: ["username", "github"],
+            attributes: ['username', 'github'],
           },
         },
         {
           model: User,
-          attributes: ["username", "github"],
+          attributes: ['username', 'github'],
         },
       ],
     });
