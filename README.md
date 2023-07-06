@@ -3,7 +3,7 @@
 # MVC Tech Blog
 
 ## Description
-Model-View-Controller Tech Blog: A MySQL database and CMS-style blog that follows the Model-View-Controller (MVC) paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.ort description explaining the what, why, and how of your project. Use the following questions as a guide:
+Model-View-Controller Tech Blog: A MySQL database and CMS-style blog that follows the Model-View-Controller (MVC) paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
 
 ## Table of Contents
